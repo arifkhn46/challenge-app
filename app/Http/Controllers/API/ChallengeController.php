@@ -20,17 +20,19 @@ class ChallengeController extends Controller
      */
     public function store()
     {
-        request()->validate(['name' => 'required', 'days' => 'required|Integer']);
+        $challenge = auth()->user()->challenges()->create($this->validateRequest());
         
-        $challeng = new Challenge();
+        return $challenge->toJson();
+        
+    }
 
-        $challeng->name = request('name');
-        $challeng->days = request('days');
-
-        $challeng->save();
-
-        return ['success' => true];
-        // $this->authorize('update', $project);
-        // return redirect($project->path());
+    /**
+     * Validate request attributes
+     * 
+     * @return array
+     */
+    public function validateRequest()
+    {
+        return request()->validate(['name' => 'required', 'days' => 'required|Integer']);
     }
 }

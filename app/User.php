@@ -41,6 +41,14 @@ class User extends Authenticatable implements JWTSubject
 
 
     /**
+     * Get all of the challenges owned by the user.
+     */
+    public function challenges()
+    {
+        return $this->hasMany(Challenge::class, 'owner_id');
+    }
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

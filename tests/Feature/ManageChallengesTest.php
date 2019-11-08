@@ -60,16 +60,12 @@ class ManageChallengesTest extends TestCase
         $this->signIn();    
         $response = $this->josnPost(
             route('challenge.create'), $attribute = factory(Challenge::class)->raw()
-        );
+        )->assertStatus(200);
 
         $this->assertDatabaseHas('challenges', [
             'name' => $attribute['name']
         ]);
-
-
-        $response->assertStatus(200)
-            ->assertJson([
-                'success' => true
-            ]);
+        
+        $this->assertArrayHasKey('name', $response->json());
     }
 }

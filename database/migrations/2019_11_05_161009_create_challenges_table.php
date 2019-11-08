@@ -16,8 +16,11 @@ class CreateChallengesTable extends Migration
         Schema::create('challenges', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->integer('days')->unsigned();
+            $table->unsignedInteger('days');
+            $table->unsignedInteger('owner_id');
             $table->timestamps();
+
+            $table->foreign('owner_id')->references('id')->on('users');
         });
     }
 
