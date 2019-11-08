@@ -32,7 +32,7 @@ abstract class TestCase extends BaseTestCase
      * Add headers to the request.
      * 
      */
-    protected function josnPost($path, $data)
+    protected function josnPost($path, $data = [])
     {
         return $this->withHeaders([
             'Authorization' => 'Bearer '. $this->token,

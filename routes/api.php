@@ -20,12 +20,14 @@ Route::group([
 
 ], function ($router) {
 
-    Route::post('login', 'AuthController@login');
-    Route::post('logout', 'AuthController@logout');
-    Route::post('refresh', 'AuthController@refresh');
-    Route::post('me', 'AuthController@me');
+    Route::post('login', 'AuthController@login')->name('api.user.login');
+    Route::post('logout', 'AuthController@logout')->name('api.user.logout');
+    Route::post('refresh', 'AuthController@refresh')->name('api.user.token_refresh');
+    Route::post('me', 'AuthController@me')->name('api.user.profile');
 
 });
+
+Route::post('register', 'Auth\RegisterController@register')->name('api.user.register');
 
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
