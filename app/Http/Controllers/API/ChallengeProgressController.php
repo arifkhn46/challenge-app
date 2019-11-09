@@ -4,6 +4,7 @@ namespace App\Http\Controllers\API;
 
 use App\Challenge;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\StoreChallengeProgressRequest;
 use Illuminate\Http\Request;
 
 class ChallengeProgressController extends Controller
@@ -13,14 +14,16 @@ class ChallengeProgressController extends Controller
      *
      * @param $challenge \App\Challenge
      * 
+     * @param $request \App\Http\Requests\StoreChallengeProgressRequest
+     * 
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Illuminate\Auth\Access\AuthorizationException
      */
-    public function store(Challenge $challenge)
+    public function store(Challenge $challenge, StoreChallengeProgressRequest $request)
     {
-        // request()->validate(['day' => 'required', 'progress' => 'required']);
-        $this->authorize('store', $challenge);
-        $challenge->addProgress(request('day'), request('progress'));
+        $data = $request->validated();
+        extract($data);
+        $challenge->addProgress($day, $progress, $description);
 
         return [
             'updated' => true

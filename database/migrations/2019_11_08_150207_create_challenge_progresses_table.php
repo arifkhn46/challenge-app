@@ -18,6 +18,7 @@ class CreateChallengeProgressesTable extends Migration
             $table->unsignedSmallInteger('day');
             $table->unsignedSmallInteger('progress');
             $table->unsignedBigInteger('challenge_id');
+            $table->text('description');
             $table->timestamps();
 
             $table->foreign('challenge_id')->references('id')->on('challenges');

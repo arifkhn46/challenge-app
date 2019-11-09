@@ -26,7 +26,8 @@ class StoreChallengeProgressRequest extends FormRequest
     {
         return [
             'day' => 'required|integer',
-            'progress' => 'required|integer'
+            'progress' => 'required|integer',
+            'description' => 'present'
         ];
     }
 

@@ -27,7 +27,7 @@ class ChallengePolicy
      * @param  \App\Challenge  $post
      * @return bool
      */
-    public function store(User $user, Challenge $challenge)
+    public function update(User $user, Challenge $challenge)
     {
         return $user->id == $challenge->owner_id;
     }

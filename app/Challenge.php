@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Challenge extends Model
 {
     /**
+     * Attribute consist valid progress values.
+     */
+    public $validProgresses = [1, 2];
+    
+
+    /**
      * Attributes to guard against mass assignment.
      *
      * @var array
@@ -30,11 +36,12 @@ class Challenge extends Model
      * 
      * @return \Illuminate\Database\Eloquent\Collection
      */
-    public function addProgress($day, $progress)
+    public function addProgress($day, $progress, $description = '')
     {
-        return $this->progresses()->create([
+        return $this->progresses()->updateOrCreate([
             'day' => $day,
-            'progress' => $progress
+            'progress' => $progress,
+            'description' => $description
         ]);
     }
 }
