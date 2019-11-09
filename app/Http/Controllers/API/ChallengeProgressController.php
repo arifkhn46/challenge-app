@@ -19,7 +19,7 @@ class ChallengeProgressController extends Controller
     public function store(Challenge $challenge)
     {
         // request()->validate(['day' => 'required', 'progress' => 'required']);
-        
+        $this->authorize('store', $challenge);
         $challenge->addProgress(request('day'), request('progress'));
 
         return [

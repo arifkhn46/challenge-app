@@ -34,7 +34,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 Route::group(['middleware' => ['api','auth'], 'namespace' => 'API'], function () {
-    Route::post('/challenges', 'ChallengeController@store')->name('challenge.create')->middleware('api');
-    Route::post('/challenges/{challenge}/progress', 'ChallengeProgressController@store')->name('api.challenge.update_progress');
+    Route::post('/challenges', 'ChallengeController@store')->name('challenge.create');
+    Route::post('/challenges/{challenge}/progress', 'ChallengeProgressController@store')->name('api.challenge.add_progress');
 });
 
